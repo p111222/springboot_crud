@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Build JAR') {
             steps {
-                bat 'mvn clean package -DskipTests'
+                bat 'cd Springboot/test1 & mvn clean install -DskipTests'
             }
         }
         stage('Build Docker Image') {
