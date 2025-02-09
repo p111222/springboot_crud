@@ -11,13 +11,17 @@ pipeline {
         }
         stage('Build JAR') {
             steps {
-                bat 'cd Springboot/test1 & mvn clean install -DskipTests'
+                bat '''
+                cd Springboot/test1
+                mvn clean install -DskipTests
+                '''
             }
         }
         stage('Build Docker Image') {
             steps {
                 bat '''
-                docker build -t %DOCKER_IMAGE% .
+                cd Springboot/test1
+                docker build -t %DOCKER_IMAGE% -f Dockerfile .
                 docker tag %DOCKER_IMAGE%:latest %DOCKER_IMAGE%:1.0
                 '''
             }
