@@ -30,7 +30,7 @@ pipeline {
                 bat '''
                 docker stop springboot-crud-app || exit 0
                 docker rm springboot-crud-app || exit 0
-                docker run -d --name springboot-crud-app -p 8081:8080 %DOCKER_IMAGE%
+                docker run -d --name springboot-crud-app -p 8081:8081 %DOCKER_IMAGE%
                 '''
             }
         }
