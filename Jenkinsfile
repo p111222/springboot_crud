@@ -26,16 +26,16 @@ pipeline {
                 '''
             }
         }
-        stage('Push to Docker Hub') {
-            steps {
-                withDockerRegistry([credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/']) {
-                    bat '''
-                    docker push %DOCKER_IMAGE%:latest
-                    docker push %DOCKER_IMAGE%:1.0
-                    '''
-                }
-            }
+       stage('Push to Docker Hub') {
+    steps {
+        withDockerRegistry([credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/']) {
+            bat '''
+            docker push %DOCKER_IMAGE%:latest
+            docker push %DOCKER_IMAGE%:1.0
+            '''
         }
+    }
+}
         stage('Run Container') {
             steps {
                 bat '''
